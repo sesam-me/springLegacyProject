@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- bean등록 설정 및 등록하는 곳 -->
+
+<!-- #1 spring bean 설정 파일의 기본적인 구조 설정
+     - 파일에서 사용할 수 있는 네임스페이스와 스키마 위치 지정
+     xmlns : xml name space /
+     xsi : Xml Schema Instance 접두사로 "http://www.w3.org/2001/XMLSchema-instance"를 사용하겠다.
+     xsi:schemaLocation="http://www.springframework.org/schema/beans 네임스페이스에 대한 스키마는 http://www.springframework.org/schema/beans/spring-beans.xsd에서 찾을 수 있다-->
+<beans xmlns = "http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- #2 bean 등록 -->
+<!-- #2-1 db연결을 원활하게 도와주는 dbcp2사용, db접속 정보를 기입(ex.자동로그인 느낌) -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/spring?serverTimezone=Asia/Seoul&amp;characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="1q2w3e4r!!"/>
+    </bean>
+
+<!-- #2-2 mabatis사용을 위한 bean등록 -->
+<!--      여기는 @@설정만!!@@ 가져다 쓸 수 없어. -->
+<!--      mapperLocations : mapper파일(쿼리있는 xml파일)로 사용할 @@경로지정@@  -->
+<!--      configLocation : mybatis에서 사용할 설정이 있다면 이 경로 참고-->
+    <bean id="sessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations" value="classpath:/sqlMap/*.xml" />
+        <property name="configLocation" value="classpath:/config/mybatisConfig.xml" />
+    </bean>
+
+<!-- #2-3 sqlSessionTemplate bean 등록 -->
+<!--    위에 설정된 mybatis를 바탕으로 사용할 수 있게 sessiontemplate을 만든다. 이제 다른 곳에서 @@가져다 쓸 수 있음@@. -->
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="sessionFactoryBean" />
+    </bean>
+
+
+</beans>
