@@ -7,4 +7,20 @@
     <select id="findAll" resultType="User">
         select * from user;
     </select>
+
+    <delete id="delete" parameterType="com.naver.domain.entity.User">
+        delete from user where user_seq=#{user_seq};
+    </delete>
+
+    <update id="update" parameterType="com.naver.domain.request.UpdateRequest">
+        update user set password=#{password},name=#{name}, address=#{address}, phone=#{phone} where user_seq = #{user_seq};
+    </update>
+
+    <select id="findByUserSeq" resultType="User" parameterType="int">
+        select * from user where user_seq=#{user_seq};
+    </select>
+
+    <insert id="insert" parameterType="User">
+        insert into User(id, password, name, address, phone) values(#{id}, #{password}, #{name}, #{address}, #{phone});
+    </insert>
 </mapper>

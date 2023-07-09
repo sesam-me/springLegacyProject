@@ -23,6 +23,8 @@
             <td>name</td>
             <td>address</td>
             <td>phone</td>
+            <td></td>
+            <td></td>
         </tr>
 
         <c:forEach items="${userlist}" var="user">
@@ -33,6 +35,8 @@
                 <td>${user.name}</td>
                 <td>${user.address}</td>
                 <td>${user.phone}</td>
+                <td> <a href="/update?user_seq=${user.user_seq}">수정</a> </td>
+                <td> <a href="/delete?user_seq=${user.user_seq}">삭제</a> </td>
             </tr>
         </c:forEach>
     </table>
