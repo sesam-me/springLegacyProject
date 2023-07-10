@@ -8,6 +8,7 @@
   <name>springLegacyProject Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+
 <!-- 테스트코드 -->
     <dependency>
       <groupId>junit</groupId>
