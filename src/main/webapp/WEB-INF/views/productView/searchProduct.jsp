@@ -20,6 +20,7 @@
             <td>재고</td>
             <td></td>
             <td></td>
+            <td></td>
         </tr>
 
         <c:forEach items="${productList}" var="product">
@@ -30,9 +31,11 @@
                 <td>${product.count}</td>
                 <td><a href="/updateproduct/${product.product_seq}">수정</a></td>
                 <td><a href="/deleteproduct/${product.product_seq}">삭제</a></td>
+                <td><a href="/addcart/${product.product_seq}">장바구니 추가</a></td>
             </tr>
 
         </c:forEach>
     </table>
+
 </body>
 </html>

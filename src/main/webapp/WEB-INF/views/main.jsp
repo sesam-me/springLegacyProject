@@ -11,6 +11,13 @@
     <title>Main</title>
 </head>
 <body>
-    <p>ddd</p>
+    <table>
+        <tr>
+            <td>유저목록</td>
+            <td><a href="/product">상품목록</a></td>
+            <td><a href="/cart">장바구니 목록</a></td>
+            <td></td>
+        </tr>
+    </table>
 </body>
 </html>

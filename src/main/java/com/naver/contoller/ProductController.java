@@ -1,5 +1,6 @@
 package com.naver.contoller;
 
+import com.naver.domain.dto.AddCartDto;
 import com.naver.domain.dto.ProductDto;
 import com.naver.domain.dto.UpdateProductDto;
 import com.naver.domain.entity.Product;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,4 +95,24 @@ public class ProductController {
         }
         return mav;
     }
+
+
+//    TODO 1.GET : 장바구니 추가 누르면(완)  2.POST : 장바구니 jsp에 장바구니 목록 담기고 보여줌.
+    @GetMapping("/addcart/{product_seq}")
+    public ModelAndView addCart(ModelAndView mav, @PathVariable("product_seq") int product_seq, HttpSession session){
+        AddCartDto addCartDto = new AddCartDto((Integer) session.getAttribute("user_seq"), product_seq);
+        int result = productService.addCart(addCartDto);
+        if(result == 1){
+            mav.setViewName("/productView/cart");
+        }
+        return mav;
+    }
+
+    @GetMapping("/cart")
+    public ModelAndView cartList(ModelAndView mav){
+        mav.setViewName("/productView/cart");
+
+        return mav;
+    }
+
 }

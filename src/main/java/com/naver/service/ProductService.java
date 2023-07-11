@@ -1,6 +1,7 @@
 package com.naver.service;
 
 import com.naver.dao.ProductMapper;
+import com.naver.domain.dto.AddCartDto;
 import com.naver.domain.dto.ProductDto;
 import com.naver.domain.entity.Product;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,8 @@ public class ProductService {
 
     public int deleteProduct(int product_seq){
         return productMapper.deleteProduct(product_seq);
+    }
+    public int addCart(AddCartDto addCartDto){
+        return productMapper.addCart(addCartDto);
     }
 }

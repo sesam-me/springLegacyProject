@@ -3,7 +3,7 @@ package com.naver.contoller;
 import com.naver.domain.entity.User;
 import com.naver.domain.request.InsertRequest;
 import com.naver.domain.request.UpdateRequest;
-import com.naver.service.UserService;
+import com.naver.service.MainService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,9 +16,9 @@ import java.util.List;
 @Controller
 public class MainController {
 
-    private final UserService userService;
+    private final MainService userService;
 
-    public MainController(UserService userService) {
+    public MainController(MainService userService) {
         this.userService = userService;
     }
 

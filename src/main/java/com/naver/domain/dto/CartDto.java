@@ -1,14 +1,18 @@
-package com.naver.domain.entity;
+package com.naver.domain.dto;
 
-public class Cart {
+public class CartDto {
     private int cart_seq;
     private int user_seq;
     private int product_seq;
+    private String name;
+    private int price;
 
-    public Cart(int cart_seq, int user_seq, int product_seq) {
+    public CartDto(int cart_seq, int user_seq, int product_seq, String name, int price) {
         this.cart_seq = cart_seq;
         this.user_seq = user_seq;
         this.product_seq = product_seq;
+        this.name = name;
+        this.price = price;
     }
 
     public int getCart_seq() {
@@ -33,5 +37,21 @@ public class Cart {
 
     public void setProduct_seq(int product_seq) {
         this.product_seq = product_seq;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
