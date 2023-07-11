@@ -18,6 +18,8 @@
             <td>상품명</td>
             <td>가격</td>
             <td>재고</td>
+            <td></td>
+            <td></td>
         </tr>
 
         <c:forEach items="${productList}" var="product">
@@ -26,6 +28,8 @@
                 <td>${product.name}</td>
                 <td>${product.price}</td>
                 <td>${product.count}</td>
+                <td><a href="/updateproduct/${product.product_seq}">수정</a></td>
+                <td><a href="/deleteproduct/${product.product_seq}">삭제</a></td>
             </tr>
 
         </c:forEach>

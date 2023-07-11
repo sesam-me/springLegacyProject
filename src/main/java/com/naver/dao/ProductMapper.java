@@ -11,4 +11,8 @@ public interface ProductMapper {
 
     int addProduct(ProductDto productDto);
     List<Product> searchProduct();
+
+    int updateProduct(Product product);
+    Product findByProductSeq(int product_seq);
+    int deleteProduct(int product_seq);
 }

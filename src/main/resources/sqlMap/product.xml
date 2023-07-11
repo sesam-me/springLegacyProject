@@ -11,4 +11,20 @@
     <select id="searchProduct" resultType="com.naver.domain.entity.Product">
         select * from product;
     </select>
+
+
+
+    <update id="updateProduct" parameterType="com.naver.domain.entity.Product">
+        update product set name = #{name}, price = #{price}, count = #{count} where product_seq = #{product_seq};
+    </update>
+<!-- update화면 들어가서 입력되어 있는 값 보여주는 쿼리-->
+    <select id="findByProductSeq" resultType="com.naver.domain.entity.Product" parameterType="int">
+        select * from product where product_seq=#{product_seq};
+    </select>
+
+
+
+    <delete id="deleteProduct" parameterType="int" >
+        delete from product where product_seq=#{product_seq};
+    </delete>
 </mapper>

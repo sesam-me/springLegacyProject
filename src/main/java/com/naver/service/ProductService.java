@@ -22,4 +22,10 @@ public class ProductService {
     public List<Product> searchProduct(){
         return productMapper.searchProduct();
     }
+    public int updateProduct(Product product){return productMapper.updateProduct(product);}
+    public Product findByProductSeq(int product_seq){return productMapper.findByProductSeq(product_seq);}
+
+    public int deleteProduct(int product_seq){
+        return productMapper.deleteProduct(product_seq);
+    }
 }

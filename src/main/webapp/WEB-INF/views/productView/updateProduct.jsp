@@ -11,6 +11,13 @@
     <title>updateProduct</title>
 </head>
 <body>
-
+    <form method="post" action="/updateproduct">
+<%--     sql에서 가져오는 product값 모두(product_seq, name, price, count) 가져와야 함. 아니면 오류 뜸.   --%>
+        <input name="product_seq" type="hidden" value="${product.product_seq}">
+        <input name="name" value="${product.name}">
+        <input name="price" value="${product.price}">
+        <input name="count" value="${product.count}">
+        <input type="submit">
+    </form>
 </body>
 </html>

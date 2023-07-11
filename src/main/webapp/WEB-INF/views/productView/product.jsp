@@ -13,7 +13,5 @@
 <body>
     <a href="/searchproduct">1.상품조회</a>
     <a href="/addproduct">2.상품추가</a>
-    <a href="/updateproduct">3.상품수정</a>
-    <a href="/deleteproduct">4.상품삭제</a>
 </body>
 </html>
