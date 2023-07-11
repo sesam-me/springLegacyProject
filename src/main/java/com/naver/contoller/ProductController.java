@@ -65,28 +65,32 @@ public class ProductController {
         return mav;
     }
 
+//    @PostMapping("/updateproduct")
+//    public void updateProduct(@ModelAttribute UpdateProductDto updateProductDto) {
+//        System.out.println(updateProductDto);
+//    }
+
+
     @PostMapping("/updateproduct")
-    public void updateProduct(@ModelAttribute UpdateProductDto updateProductDto) {
-        System.out.println(updateProductDto);
+    public ModelAndView updateProduct(ModelAndView mav, @ModelAttribute Product product){
+        System.out.println(product);
+        int updateResult = productService.updateProduct(product);
+
+        if(updateResult == 1){
+            mav.setViewName("redirect:/searchproduct");
+        }
+        return mav;
     }
 
 
-//    @PostMapping("/changeProduct")
-//    public ModelAndView updateProduct(ModelAndView mav, @ModelAttribute Product product){
-//        System.out.println(product);
-//        int updateResult = productService.updateProduct(product);
-//
-//        if(updateResult == 1){
-//            mav.setViewName("redirect:/searchproduct");
-//        }
-//        return null;
-//    }
 
-
-
-//    @PostMapping("/deleteproduct/{product_seq}")
-//    public ModelAndView deleteProduct(ModelAndView mav, @PathVariable("product_seq")int product_seq){
-//
-//        mav.setViewName("/");
-//    }
+    @GetMapping("/deleteproduct/{product_seq}")
+    public ModelAndView deleteProduct(ModelAndView mav, @PathVariable("product_seq")int product_seq){
+        int deleteResult = productService.deleteProduct(product_seq);
+        System.out.println(deleteResult);
+        if(deleteResult == 1){
+            mav.setViewName("redirect:/searchproduct");
+        }
+        return mav;
+    }
 }
