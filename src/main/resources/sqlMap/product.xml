@@ -8,5 +8,7 @@
         insert into product(name, price, count) values(#{name}, #{price}, #{count});
     </insert>
 
-
+    <select id="searchProduct" resultType="com.naver.domain.entity.Product">
+        select * from product;
+    </select>
 </mapper>

@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class ProductController {
     private final ProductService productService;
@@ -30,9 +33,25 @@ public class ProductController {
     }
 
     @PostMapping("/addproduct")
-    public void addProduct(ModelAndView mav, @ModelAttribute ProductDto productDto){
+    public ModelAndView addProduct(ModelAndView mav, @ModelAttribute ProductDto productDto){
 //        TODO : 조회하는거 만들고 화면 연결해주기
-        System.out.println(productService.addProduct(productDto));
+        int result = productService.addProduct(productDto);
+
+        if(result == 1){
+            mav.setViewName("redirect:/searchproduct");
+        }
+
+        return mav;
+    }
+
+    @GetMapping("/searchproduct")
+    public ModelAndView searchProduct(ModelAndView mav){
+        List<Product> productList = productService.searchProduct();
+
+        mav.addObject("productList",productList);
+
+        mav.setViewName("/productView/searchProduct");
+        return mav;
     }
 
 
