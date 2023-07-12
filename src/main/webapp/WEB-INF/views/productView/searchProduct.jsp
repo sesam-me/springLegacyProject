@@ -21,6 +21,7 @@
             <td></td>
             <td></td>
             <td></td>
+            <td><a href="/cart">내 장바구니 목록</a></td>
         </tr>
 
         <c:forEach items="${productList}" var="product">

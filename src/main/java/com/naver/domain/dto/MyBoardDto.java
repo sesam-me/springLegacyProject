@@ -1,24 +1,16 @@
-package com.naver.domain.entity;
+package com.naver.domain.dto;
 
-public class Board {
-    private int board_seq;
+public class MyBoardDto {
     private int user_seq;
+    private int board_seq;
     private String title;
     private String content;
 
-    public Board(int board_seq, int user_seq, String title, String content) {
-        this.board_seq = board_seq;
+    public MyBoardDto(int user_seq, int board_seq, String title, String content) {
         this.user_seq = user_seq;
+        this.board_seq = board_seq;
         this.title = title;
         this.content = content;
-    }
-
-    public int getBoard_seq() {
-        return board_seq;
-    }
-
-    public void setBoard_seq(int board_seq) {
-        this.board_seq = board_seq;
     }
 
     public int getUser_seq() {
@@ -27,6 +19,14 @@ public class Board {
 
     public void setUser_seq(int user_seq) {
         this.user_seq = user_seq;
+    }
+
+    public int getBoard_seq() {
+        return board_seq;
+    }
+
+    public void setBoard_seq(int board_seq) {
+        this.board_seq = board_seq;
     }
 
     public String getTitle() {

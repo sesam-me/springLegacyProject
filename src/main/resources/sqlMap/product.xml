@@ -30,11 +30,18 @@
     </delete>
 
 <!--  ## CART ##  -->
-    <select id="searchCart">
-
+    <select id="searchCart" resultType="com.naver.domain.dto.CartDto" parameterType="int">
+        select c.cart_seq, c.user_seq, c.product_seq, p.name, p.price, p.count from cart c
+        join product p on c.product_seq = p.product_seq
+        join user u on c.user_seq = u.user_seq
+        where u.user_seq = #{user_seq};
     </select>
 
     <insert id="addCart" parameterType="com.naver.domain.dto.AddCartDto">
         insert cart(user_seq,product_seq) values(#{user_seq}, #{product_seq});
     </insert>
+
+    <delete id="deleteCart" parameterType="int">
+        delete from cart where cart_seq = #{cart_seq};
+    </delete>
 </mapper>

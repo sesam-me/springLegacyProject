@@ -1,6 +1,7 @@
 package com.naver.contoller;
 
 import com.naver.domain.dto.AddCartDto;
+import com.naver.domain.dto.CartDto;
 import com.naver.domain.dto.ProductDto;
 import com.naver.domain.dto.UpdateProductDto;
 import com.naver.domain.entity.Product;
@@ -103,16 +104,29 @@ public class ProductController {
         AddCartDto addCartDto = new AddCartDto((Integer) session.getAttribute("user_seq"), product_seq);
         int result = productService.addCart(addCartDto);
         if(result == 1){
-            mav.setViewName("/productView/cart");
+            mav.setViewName("redirect:/searchproduct");
         }
         return mav;
     }
 
     @GetMapping("/cart")
-    public ModelAndView cartList(ModelAndView mav){
+    public ModelAndView cartList(ModelAndView mav, HttpSession session){
+        List<CartDto> cartlist = productService.searchCart((Integer) session.getAttribute("user_seq"));
+        mav.addObject("cartlist",cartlist);
         mav.setViewName("/productView/cart");
 
         return mav;
     }
+
+    @GetMapping("/deletecart/{cart_seq}")
+    public ModelAndView deleteCart(ModelAndView mav, @PathVariable("cart_seq") int cart_seq){
+        int result = productService.deleteCart(cart_seq);
+        if(result == 1){
+            mav.setViewName("redirect:/cart");
+        }
+        return mav;
+    }
+
+
 
 }
