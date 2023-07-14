@@ -7,11 +7,22 @@ public class Product {
     private int price;
     private int count;
 
-    public Product(int product_seq, String name, int price, int count) {
+    private int like_count;
+
+    public Product(int product_seq, String name, int price, int count, int like_count) {
         this.product_seq = product_seq;
         this.name = name;
         this.price = price;
         this.count = count;
+        this.like_count = like_count;
+    }
+
+    public int getLike_count() {
+        return like_count;
+    }
+
+    public void setLike_count(int like_count) {
+        this.like_count = like_count;
     }
 
     public int getProduct_seq() {

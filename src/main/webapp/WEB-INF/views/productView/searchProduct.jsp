@@ -21,6 +21,7 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
             <td><a href="/cart">내 장바구니 목록</a></td>
         </tr>
 
@@ -33,6 +34,11 @@
                 <td><a href="/updateproduct/${product.product_seq}">수정</a></td>
                 <td><a href="/deleteproduct/${product.product_seq}">삭제</a></td>
                 <td><a href="/addcart/${product.product_seq}">장바구니 추가</a></td>
+                <td>
+                    <form action="/like?product_seq=${product.product_seq}" method="post">
+                        <button type="submit">${product.like_count}</button>
+                    </form>
+                </td>
             </tr>
 
         </c:forEach>

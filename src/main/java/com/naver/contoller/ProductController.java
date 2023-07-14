@@ -1,9 +1,6 @@
 package com.naver.contoller;
 
-import com.naver.domain.dto.AddCartDto;
-import com.naver.domain.dto.CartDto;
-import com.naver.domain.dto.ProductDto;
-import com.naver.domain.dto.UpdateProductDto;
+import com.naver.domain.dto.*;
 import com.naver.domain.entity.Product;
 import com.naver.service.ProductService;
 import org.springframework.stereotype.Controller;
@@ -127,6 +124,22 @@ public class ProductController {
         return mav;
     }
 
+    @PostMapping("/like")
+    public ModelAndView likeCheck(ModelAndView mav,@RequestParam("product_seq")int product_seq, HttpSession session){
+        LikeCheckDto likeCheckDto = new LikeCheckDto((Integer) session.getAttribute("user_seq"),product_seq);
+        // 내가 좋아요 눌럿는가? 눌럿으면 1 아니면 0
+        int result = productService.likeCheck(likeCheckDto);
 
+        LikeUpdateDto likeUpdateDto = new LikeUpdateDto((Integer) session.getAttribute("user_seq"), product_seq, result);
+
+        int result2 = productService.manageLike(likeUpdateDto);
+
+        if(result2 == 1) {
+            mav.setViewName("redirect:/searchproduct");
+        }
+
+
+        return mav;
+    }
 
 }

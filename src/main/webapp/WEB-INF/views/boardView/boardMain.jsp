@@ -15,5 +15,6 @@
     <a href="/boardlist">게시글보기</a>
     <a href="/boardwrite">게시글쓰기</a>
   </div>
+
 </body>
 </html>

@@ -13,7 +13,7 @@
     <title>boardList</title>
 
     <style>
-        tr:hover {
+        .hoverClass:hover {
             font-weight: bold;
             cursor: pointer;
         }
@@ -24,15 +24,21 @@
     <tr>
       <td>게시글 번호</td>
       <td>제목</td>
+      <td></td>
+      <td></td>
 <%--      <td>좋아요</td>--%>
 <%--      <td>조회수</td>--%>
     </tr>
 
-
       <c:forEach items="${myBoardList}" var="board">
-          <tr>
+          <tr class="hoverClass">
               <td>${board.board_seq}</td>
-              <td>${board.title}</td>
+              <td><a href="/boarddetail/${board.board_seq}">${board.title}</a></td>
+
+              <c:if test="${user_seq eq board.user_seq}">
+                  <td><a href="/boardupdate/${board.board_seq}">수정</a></td>
+                  <td><a href="/boarddelete/${board.board_seq}">삭제</a></td>
+              </c:if>
           </tr>
       </c:forEach>
 

@@ -11,7 +11,10 @@
     </insert>
 
     <select id="searchProduct" resultType="com.naver.domain.entity.Product">
-        select * from product;
+        SELECT p.*, COUNT(l.product_seq) AS like_count
+        FROM product p
+                 LEFT JOIN like3 l ON p.product_seq = l.product_seq
+        GROUP BY p.product_seq;
     </select>
 
 
@@ -44,4 +47,20 @@
     <delete id="deleteCart" parameterType="int">
         delete from cart where cart_seq = #{cart_seq};
     </delete>
+
+
+    <select id="likeCheck" resultType="int" parameterType="com.naver.domain.dto.LikeCheckDto">
+        select COUNT(*) from like3 where product_seq = #{product_seq} and user_seq = #{user_seq};
+    </select>
+
+    <insert id="manageLike" parameterType="com.naver.domain.dto.LikeUpdateDto">
+        <choose>
+            <when test="result == 1">
+                delete from like3 where user_seq = #{user_seq} and product_seq = #{product_seq}
+            </when>
+            <otherwise>
+                insert into like3(user_seq, product_seq) values(#{user_seq}, #{product_seq})
+            </otherwise>
+        </choose>
+    </insert>
 </mapper>

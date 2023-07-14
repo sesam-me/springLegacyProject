@@ -1,25 +1,14 @@
 package com.naver.domain.dto;
 
-public class BoardDto {
-
-    private int board_seq;
+public class BoardWriteDto {
     private int user_seq;
     private String title;
     private String content;
 
-    public int getBoard_seq() {
-        return board_seq;
-    }
-
-    public void setBoard_seq(int board_seq) {
-        this.board_seq = board_seq;
-    }
-
-    public BoardDto(int user_seq, String title, String content, int board_seq) {
+    public BoardWriteDto(int user_seq, String title, String content) {
         this.user_seq = user_seq;
         this.title = title;
         this.content = content;
-        this.board_seq = board_seq;
     }
 
     public int getUser_seq() {
